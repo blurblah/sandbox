@@ -39,7 +39,7 @@ jobs:
           # AWS Secret Access Key. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
           aws-secret-access-key: ${AWS_SECRET_ACCESS_KEY}
           # AWS Region, e.g. us-east-2
-          # aws-region: 
+          aws-region: ap-northeast-2
           # Whether to set the AWS account ID for these credentials as a secret value, so that it is masked in logs. Valid values are 'true' and 'false'. Defaults to true
           # mask-aws-account-id: # optional
           # Use the provided credentials to assume an IAM role and configure the Actions environment with the assumed role credentials rather than with the provided credentials
