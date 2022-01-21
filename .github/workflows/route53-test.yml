@@ -61,4 +61,4 @@ jobs:
       #     aws route53 list-resource-record-sets --hosted-zone-id ${AWS_HOSTED_ZONE_ID}
       - name: docker run
         run: |
-          docker run --rm -it python:3 python --version
+          docker run --rm python:3 python --version
