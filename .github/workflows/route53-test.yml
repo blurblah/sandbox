@@ -19,15 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      - name: extract branch
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
-      
+    steps:      
       - name: docker run
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
@@ -37,9 +29,8 @@ jobs:
           RECORD_VALUE: dev-qa.blurblah.net
         run: |
           echo "GITHUB_REF_NAME: ${GITHUB_REF_NAME}"
-          echo "branch: ${{ steps.extract_branch.outputs.branch }}"
-          branch=$(echo ${{ steps.extract_branch.outputs.branch }} | rev | cut -d "/" -f1 | rev)
-          record=${branch}.blurblah.net
+          subdomain=$(echo ${GITHUB_REF_NAME} | rev | cut -d "/" -f1 | rev)
+          record=${subdomain}.dev-fe.blurblah.net
           docker run --rm -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e HOSTED_ZONE_ID \
             -e RECORD_NAME=${record} -e RECORD_TYPE -e RECORD_VALUE \
             blurblah/route53:0.1
