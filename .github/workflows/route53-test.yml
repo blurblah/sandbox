@@ -35,4 +35,6 @@ jobs:
       
       - name: test
         run: |
-          echo ${{ steps.extract_branch.outputs.branch }}
+          echo "branch: ${{ steps.extract_branch.outputs.branch }}"
+          test=$(echo ${{ steps.extract_branch.outputs.branch }} | rev | cut -d "/" -f1 | rev)
+          echo "last: ${test}"
