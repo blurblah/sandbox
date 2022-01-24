@@ -36,6 +36,7 @@ jobs:
           RECORD_TYPE: CNAME
           RECORD_VALUE: dev-qa.blurblah.net
         run: |
+          echo "GITHUB_REF_NAME: ${GITHUB_REF_NAME}"
           echo "branch: ${{ steps.extract_branch.outputs.branch }}"
           branch=$(echo ${{ steps.extract_branch.outputs.branch }} | rev | cut -d "/" -f1 | rev)
           record=${branch}.blurblah.net
